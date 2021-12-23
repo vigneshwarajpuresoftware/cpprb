@@ -60,3 +60,34 @@ jobs:
         run: python -m twine upload -u __token__ -p ${{ secrets.pypi_password }} --skip-existing dist/cpprb-*
         if: github.event_name == 'push' && startsWith(github.event.ref,'refs/tags/v') && startsWith(runner.os, 'Windows')
         continue-on-error: true
+
+  build_aarch64:
+      runs-on: ${{ matrix.os }}
+      needs: build
+      strategy:
+        fail-fast: false
+        matrix:
+          python-version: ['cp36-cp36m', 'cp37-cp37m', 'cp38-cp38', 'cp39-cp39']
+          os: [ubuntu-latest]
+      env:
+        py: /opt/python/${{ matrix.python-version }}/bin/python
+        img: quay.io/pypa/manylinux2014_aarch64
+
+      steps:
+        - uses: actions/setup-python@v2
+          with:
+            python-version: ${{ matrix.python }}
+
+        - uses: actions/checkout@v2
+        - name: Set up QEMU
+          id: qemu
+          uses: docker/setup-qemu-action@v1
+
+        - name: Building wheel
+          run: |
+            docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws \
+            ${{ env.img }} \
+            bash -exc '${{ env.py }} -m venv .env && \
+            source .env/bin/activate && \
+            echo "::set-output name=dir::$(pip cache dir)" && \
+            deactivate '
