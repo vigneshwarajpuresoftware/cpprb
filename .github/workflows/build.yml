@@ -91,6 +91,7 @@ jobs:
             source .env/bin/activate && \
             echo "::set-output name=dir::$(pip cache dir)" && \
             pip install wheel && \
+            curl --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal && \
             yum install libffi-devel -y && \
             pip install cython setuptools twine gym "numpy<1.20.0" && \
             deactivate '
