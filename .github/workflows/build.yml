@@ -90,4 +90,5 @@ jobs:
             bash -exc '${{ env.py }} -m venv .env && \
             source .env/bin/activate && \
             echo "::set-output name=dir::$(pip cache dir)" && \
+            pip install wheel && \
             deactivate '
