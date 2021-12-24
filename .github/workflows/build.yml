@@ -101,7 +101,9 @@ jobs:
             ./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib no-shared zlib-dynamic && \
             make && make install && \
             cd .. && \
+            yum install gcc -y && \
             pip install cryptography && \
             pip install cython setuptools twine gym "numpy<1.20.0" && \
             pip install '.[gym]' && \
+            python -m unittest discover . '*.py' && \
             deactivate '
