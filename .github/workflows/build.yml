@@ -103,4 +103,5 @@ jobs:
             cd .. && \
             pip install cryptography && \
             pip install cython setuptools twine gym "numpy<1.20.0" && \
+            pip install '.[gym]' && \
             deactivate '
