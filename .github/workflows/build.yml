@@ -96,5 +96,6 @@ jobs:
             curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable && \
             source $HOME/.cargo/env && \
             yum install openssl-devel -y && \
+            pip install cryptography && \
             pip install cython setuptools twine gym "numpy<1.20.0" && \
             deactivate '
