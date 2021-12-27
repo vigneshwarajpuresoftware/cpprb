@@ -63,7 +63,6 @@ jobs:
 
   build_aarch64:
       runs-on: ${{ matrix.os }}
-      needs: build
       strategy:
         fail-fast: false
         matrix:
