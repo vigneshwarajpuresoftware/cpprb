@@ -105,6 +105,7 @@ jobs:
             pip install cryptography && \
             pip install cython setuptools twine gym "numpy<1.20.0" && \
             pip install '.[gym]' && \
-            cd ./test && \
+            ls && \
+            cd /test && \
             python -m unittest discover . '*.py' && \
             deactivate '
