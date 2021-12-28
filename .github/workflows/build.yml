@@ -87,7 +87,6 @@ jobs:
             docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws \
             ${{ env.img }} \
             bash -exc '${{ env.py }} -m venv .env && \
-            source .env/bin/activate && \
             echo "::set-output name=dir::$(pip cache dir)" && \
             pip install wheel && \
             yum install libffi-devel -y && \
@@ -107,4 +106,3 @@ jobs:
             ls && \
             cd test && \
             python -m unittest discover . train.py && \
-            deactivate '
