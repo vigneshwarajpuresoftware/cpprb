@@ -106,5 +106,5 @@ jobs:
             pip install '.[gym]' && \
             ls && \
             cd test && \
-            python -m unittest discover . 'train.py' && \
+            python -m unittest discover . train.py && \
             deactivate '
