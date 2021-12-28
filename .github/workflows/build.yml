@@ -106,6 +106,5 @@ jobs:
             pip install '.[gym]' && \
             ls && \
             cd test && \
-            yum install python-nose -y && \
-            python -m unittest discover . '*.py' && \
+            python -m unittest discover . 'train.py' && \
             deactivate '
