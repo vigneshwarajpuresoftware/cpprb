@@ -101,9 +101,9 @@ jobs:
             make && make install && \
             cd .. && \
             yum install gcc -y && \
-            pip install cryptography && \
-            pip install cython setuptools twine gym "numpy<1.20.0" && \
-            pip install '.[gym]' && \
+            pip3 install cryptography && \
+            pip3 install cython setuptools twine gym "numpy<1.20.0" && \
+            pip3 install '.[gym]' && \
             ls && \
             cd test && \
             python -m unittest discover . train.py && \
